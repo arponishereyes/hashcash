@@ -231,26 +231,27 @@ def handle_client(c,addr):
                 elif not c_r:
                     print(f'{addr} has disconnected')
                     break
+    
+
+
+            elif c_logged:
+    
+                c.send(menu_msg.encode())
+                to_do = c.recv(1024).decode()
+                user_msg(to_do,addr)
+                if to_do == '1':
+                    myprofile(c,username)
+                    #c.send(menu_msg.encode())
+                    c.recv(1024)
+    
+                elif to_do == '2':
+                    send_money(c,username)
+                elif not to_do:
+                    print(f'{username} has disconnected')
+                    break
     finally:
         c.close()
         print(f"{addr} has disconnected")
-
-
-        elif c_logged:
-
-            c.send(menu_msg.encode())
-            to_do = c.recv(1024).decode()
-            user_msg(to_do,addr)
-            if to_do == '1':
-                myprofile(c,username)
-                #c.send(menu_msg.encode())
-                c.recv(1024)
-
-            elif to_do == '2':
-                send_money(c,username)
-            elif not to_do:
-                print(f'{username} has disconnected')
-                break
 
 
 
