@@ -7,7 +7,7 @@ import os
 
 socket = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 print('Socket created successfully')
-port = os.environ.get("PORT")
+port = int(os.environ.get("PORT"))
 socket.bind(('localhost',port))
 
 socket.listen(6)
