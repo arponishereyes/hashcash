@@ -14,4 +14,5 @@ print("Listening to 6 clients...")
 while True:
     client_socket, addr = server_socket.accept()
     print(f"Client connected: {addr}")
+    client_socket.send('hi'.encode())
     client_socket.close()
