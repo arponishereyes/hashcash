@@ -9,7 +9,7 @@ socket = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 print('Socket created successfully')
 port = int(os.environ.get("PORT"))
 socket.bind(('localhost',port))
-
+print(f'the port is{port}')
 socket.listen(6)
 print("Listening to 6 clients")
 def signup(c):
