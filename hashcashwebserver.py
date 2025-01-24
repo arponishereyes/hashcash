@@ -249,6 +249,7 @@ def handle_client(c,addr):
                 elif not to_do:
                     print(f'{username} has disconnected')
                     break
+    except Exception as e: print(f'an error occurred {e}')
     finally:
         c.close()
         print(f"{addr} has disconnected")
