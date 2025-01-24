@@ -10,6 +10,7 @@ print('Socket created successfully')
 port = int(os.environ.get("PORT"))
 socket.bind(('0.0.0.0',port))
 def ip_and_port():
+    import socket
     print(f'the port is {port} and the ip is {socket.gethostbyname(socket.gethostname())}')
 ip_and_port()
 socket.listen(6)
