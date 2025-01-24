@@ -3,7 +3,7 @@ import socket
 import threading
 import time
 import os
-from Demos.win32ts_logoff_disconnected import username
+
 
 socket = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 print('Socket created successfully')
