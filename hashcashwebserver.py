@@ -210,26 +210,30 @@ def send_money(c,sender_username):
 
 def handle_client(c,addr):
     c_logged = False
-    while True:
-        if not c_logged:
-            c.send("""        WELCOME TO HASHCASH
-                Please Login or Signup to Continue!
-                1.Signup
-                2.Login
-                3.Exit""".encode())
-            c_r = c.recv(1024).decode()
-            print(f'{addr}=> {c_r}')
-            if c_r == '1':
-                c_logged,username,msg = signup(c)
-                c.send(msg.encode())
-                c.recv(1024)
-            elif c_r == '2':
-                c_logged,username,msg = login(c)
-                c.send(msg.encode())
-                c.recv(1024)
-            elif not c_r:
-                print(f'{addr} has disconnected')
-                break
+    try:
+        while True:
+            if not c_logged:
+                c.send("""        WELCOME TO HASHCASH
+                    Please Login or Signup to Continue!
+                    1.Signup
+                    2.Login
+                    3.Exit""".encode())
+                c_r = c.recv(1024).decode()
+                print(f'{addr}=> {c_r}')
+                if c_r == '1':
+                    c_logged,username,msg = signup(c)
+                    c.send(msg.encode())
+                    c.recv(1024)
+                elif c_r == '2':
+                    c_logged,username,msg = login(c)
+                    c.send(msg.encode())
+                    c.recv(1024)
+                elif not c_r:
+                    print(f'{addr} has disconnected')
+                    break
+    finally:
+        c.close()
+        print(f"{addr} has disconnected")
 
 
         elif c_logged:
